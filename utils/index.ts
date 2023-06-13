@@ -3,13 +3,13 @@ import { CarProps, FilterProps } from '@/types'
 export async function fetchCars(filters: FilterProps) {
   const { manufacturer, year, model, limit, fuel } = filters
   const headers = {
-    'X-RapidAPI-Key': 'd9d3c66f43mshd77fa7549add2b3p1e1fa4jsn4dcd9c0eb96c',
+    'X-RapidAPI-Key': process.env.RAPID_API_KEY || '',
     'X-RapidAPI-Host': 'cars-by-api-ninjas.p.rapidapi.com',
   }
   const res = await fetch(
     `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&year=${year}&model=${model}&limit=${limit}&fuel_type=${fuel}`,
     {
-      headers: headers,
+      headers,
     }
   )
   const data = await res.json()
